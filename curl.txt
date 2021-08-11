@@ -1,5 +1,4 @@
-curl --location --request POST 'http://localhost:8080/recipes'
-\
+curl --location --request POST 'http://localhost:8080/recipes' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "Homemade Pizza",
@@ -16,3 +15,47 @@ curl --location --request POST 'http://localhost:8080/recipes'
         "Step 3."
     ]
 }' | jq -r
+
+curl -s --location --request GET 'http://localhost:8080/recipes' --header 'Content-Type: application/json'
+curl -s -X GET 'http://localhost:8080/recipes' | jq length
+
+-------------------------------------------
+PUT
+-------------------------------------------
+
+curl --location --request POST 'http://localhost:8080/recipes' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Homemade Pizza",
+    "tags" : ["italian", "pizza", "dinner"],
+    "ingredients": [
+        "pizza dough",
+        "tomato sauce",
+        "olive oil",
+        "f7 ounces fresh mozzarella cheese, cut into 1/2-inch cubes",
+        "5 - 6 large fresh basil leaves"
+    ],
+    "instructions": []
+}' | jq -r
+
+curl --location --request PUT 'http://localhost:8080/recipes/c4a00a3djfe070vcljig' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "id": "c4a00a3djfe070vcljig",
+    "name": "Shrimp scampi Pizza",
+    "tags" : ["italian", "pizza", "dinner"],
+    "ingredients": [
+        "pizza dough",
+        "tomato sauce",
+        "olive oil",
+        "f7 ounces fresh mozzarella cheese, cut into 1/2-inch cubes",
+        "5 - 6 large fresh basil leaves"
+    ],
+    "instructions": []
+}' | jq -r
+
+
+-------------------------------------------
+DELETE
+-------------------------------------------
+curl -v -sX DELETE http://localhost:8080/recipes/c0283p3d0cvuglq85log | jq -r
