@@ -54,3 +54,8 @@ curl --location --request PUT 'http://localhost:8080/recipes/c4a00a3djfe070vclji
     "instructions": []
 }' | jq -r
 
+
+-------------------------------------------
+DELETE
+-------------------------------------------
+curl -v -sX DELETE http://localhost:8080/recipes/c0283p3d0cvuglq85log | jq -r
